@@ -49,7 +49,6 @@ public class Salle {
                 int reach=(nContiguesAuRangI(n, i)+n);
                 for (int j = nContiguesAuRangI(n, i); j< reach; j++) {
                     placeLibres[i][j] = false;
-                    System.out.println("j"+j);
                 }
                 return true;
             }
@@ -57,7 +56,7 @@ public class Salle {
         return false;
     }
 
-    boolean reserver(int id, int n) {
+    synchronized boolean reserver(int id, int n) {
         boolean res;
         if (capaciteOk(n)) {
             if (reserverContigues(id, n)) {
