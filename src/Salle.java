@@ -38,14 +38,18 @@ public class Salle {
             return -1;
         }
 
-        return nbPlacesRang-cmp;
+        return (nbPlacesRang-cmp) ;
     }
 
     boolean reserverContigues(int id, int n) {
         for (int i = 0; i < nbRangs; i++){
             if (nContiguesAuRangI(n, i) != -1) {
-                for (int j = nContiguesAuRangI(n, i); j < n; j++) {
+                //System.out.println("i =" + i + "nContiguesAuRangI(n, i)" + nContiguesAuRangI(n, i));
+                //System.out.println("Ill reach :"+ (nContiguesAuRangI(n, i)+n));
+                int reach=(nContiguesAuRangI(n, i)+n);
+                for (int j = nContiguesAuRangI(n, i); j< reach; j++) {
                     placeLibres[i][j] = false;
+                    System.out.println("j"+j);
                 }
                 return true;
             }
@@ -88,7 +92,7 @@ public class Salle {
     void printSalle(){
         for (int i = 0; i < nbRangs; i++) {
             for (int j = 0; j < nbPlacesRang; j++) {
-                if(placeLibres[i][j] = true){
+                if(placeLibres[i][j]){
                     System.out.print("--L--!");
                 }else{
                     System.out.print("--R--!");
